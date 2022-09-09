@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="row">
+    <div class="search-hero">
+      <input type="text" name="search" [(ngModel)]="searchText" placeholder="Nome da empresa">
+    </div>
+    <table class= "table table-striped">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Nome da empresa</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let empresa of empresas | filter:searchText">
+          <td>{{empresa.id}}</td>
+          <td>{{empresa.nome}}</td>
+        </tr>
+      </tbody>
+
+    </table>
+  </div>
+</div>
+
+
+

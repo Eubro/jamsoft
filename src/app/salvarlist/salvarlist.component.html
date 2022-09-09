@@ -1,0 +1,23 @@
+<div class="card my-5">
+  <div class="submit-form">
+    <div *ngIf="!submitted">
+      <div class="form-group">
+        <label for="nome">Nome</label>
+        <input
+        type="text"
+        class="form-control"
+        id="nome"
+        required
+        [(ngModel)]="empresa.nome"
+        nome="nome"
+        />
+      </div>
+      <button (click)="saveEmpresa()" class="btn btn-success">Salvar</button>
+    </div>
+
+    <div *ngIf="submitted">
+      <h4>Salvo com sucesso!</h4>
+    </div>
+  </div>
+
+</div>
