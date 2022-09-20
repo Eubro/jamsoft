@@ -1,4 +1,6 @@
-export class Empresa {
+export interface Empresa {
+  [x: string]: any;
+
   id?: number;
   nome?: string;
 

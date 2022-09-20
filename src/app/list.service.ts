@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
-import { retry, catchError } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { retry, catchError, map,tap } from 'rxjs/operators';
 import { Empresa } from './models/empresa';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 
@@ -9,6 +9,7 @@ const url = 'http://localhost:8080/api/empresas';
   providedIn: 'root'
 })
 export class ListService {
+  url: any;
 
   constructor(private http: HttpClient) { }
 
@@ -29,6 +30,10 @@ export class ListService {
   findByEmpresa(nome:any): Observable<Empresa[]>{
     return this.http.get<Empresa[]>('${url}?nome=${nome}');
   }
+
+
+
+
 
 
 

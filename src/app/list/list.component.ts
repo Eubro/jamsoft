@@ -1,10 +1,9 @@
 import { Component, OnInit, PipeTransform } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { Observable, Subject } from 'rxjs';
 import { ListService } from '../list.service';
-
-
-
-
-
+import { Empresa } from '../models/empresa';
+import { map, startWith, debounceTime, switchMap } from 'rxjs/operators';
 
 
 @Component({
@@ -16,31 +15,34 @@ import { ListService } from '../list.service';
 
 
 export class ListComponent implements OnInit {
-
-  empresas:any;
-  currentEmpresa = null;
-  currentIndex = -1;
-  title = '';
+  myControl = new FormControl();
+  filteredOptions: Observable<any>;
+  options :Empresa[] = [];
 
 
 
-  constructor(private listService:ListService) { }
+  constructor(private listService:ListService) {
+    this.filteredOptions =this.myControl.valueChanges.pipe(
+      startWith(''),
+      debounceTime(100),
+      switchMap(value =>{return this.filter(value || '')})
+
+
+    );
+   }
+
+   displayFn(user: Empresa): string {
+    return user && user.nome ? user.nome : '';
+  }
+   public filter(value: string): Observable<Empresa[]> {
+    return this.listService.getEmpresas().pipe(map(response=> response.filter(option=>{
+      return option.nome?.toLowerCase().indexOf(value.toLowerCase())===0
+    }))
+    )
+  }
+
 
   ngOnInit(): void {
-    this.retrieveEmpresas();
-
-  }
-  retrieveEmpresas():void{
-    this.listService.getEmpresas().subscribe(data =>{this.empresas = data;console.log(data);},error=>{console.log(error);});
-
-  }
-
-  searchText: string = '';
-
-
-  onSearchTextEntered(searchValue: string){
-    this.searchText = searchValue;
-    console.log(this.searchText);
 
   }
 

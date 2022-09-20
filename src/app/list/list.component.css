@@ -1,1 +1,41 @@
+table {
+  text-align: center;
+  margin: 0 auto;
+  width: 80%;
+  border: 1px solid;
+}
+td {
+  padding: 5px;
+  padding-top: 10px;
+}
+b {
+  font-size: 18px;
+}
+select {
+  font-size: 18px;
+  margin-right: 2px;
+}
+input {
+  margin-right: 10px;
+  font-size: 14;
+}
+
+/* CLASSES */
+.titulo {
+  background-color: red;
+  font-size: larger;
+  color: #fff;
+}
+.topicos {
+  background-color: rgb(192, 189, 189);
+  text-align: center;
+}
+/* IDS */
+#gravar {
+  font-size: 24px;
+}
+.footer {
+  text-align: center;
+  margin-top: 4rem;
+}
 

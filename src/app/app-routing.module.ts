@@ -4,7 +4,7 @@ import { ListComponent } from './list/list.component';
 import { SalvarlistComponent } from './salvarlist/salvarlist.component';
 
 const routes: Routes = [
-  {path:'',redirectTo:'component',pathMatch:'full'},
+  //{path:'',redirectTo:'',pathMatch:'full'},
   {path:'list', component: ListComponent},
   {path:'add',component:SalvarlistComponent}
 ];

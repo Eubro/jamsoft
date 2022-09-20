@@ -1,23 +1,75 @@
-<div class="card my-5">
-  <div class="submit-form">
-    <div *ngIf="!submitted">
-      <div class="form-group">
-        <label for="nome">Nome</label>
-        <input
-        type="text"
-        class="form-control"
-        id="nome"
-        required
-        [(ngModel)]="empresa.nome"
-        nome="nome"
+
+
+<!-- Toolbar -->
+<div class="teste">
+  <body >
+    <form #f="ngForm" (ngSubmit)="saveEmpresa()">
+      <table class="table bg-branco input-min" cellspacing="0" cellpadding="0" >
+        <tbody>
+          <tr>
+            <td class="titulo" colspan="2">Avaliação</td>
+          </tr>
+          <tr>
+            <td class="topicos" colspan="2">
+              <b>Empresa: </b>
+
+              <input
+              *ngIf="!submitted"
+
+
+              type="text"
+              id="nome"
+              name="nome"
+              required
+              [(ngModel)]="empresa.nome"
         />
-      </div>
-      <button (click)="saveEmpresa()" class="btn btn-success">Salvar</button>
+
+
+        <div  *ngIf="submitted">
+          <h4>Salvo com sucesso!</h4>
+        </div>
+        <button [disabled]="!f.valid">Salvar</button>
+        <a routerLink="/list" >
+          <button>voltar</button>
+        </a>
+        <button (click)="load()">Novo cadastro</button>
+
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <h2>
+                <span>*</span>
+              </h2>
+              <textarea
+                name="obs"
+                id="obs"
+                cols="150"
+                rows="20"
+                placeholder="observações aqui"
+              ></textarea>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <input id="gravar" type="submit" value="Gravar" name="Gravar" />
+            </td>
+          </tr>
+        </tbody>
+
+      </table>
+    </form>
+    <div class="footer">
+      <p>
+        O projeto tem o objetivo de cadastrar empresa e uma observação para cada
+        empresa.
+      </p>
+      <p>
+        O usuário também precisa ter a opção de pesquisar e o sistema deve
+        avisar se existe o texto pesquisado na observação.
+      </p>
     </div>
 
-    <div *ngIf="submitted">
-      <h4>Salvo com sucesso!</h4>
-    </div>
-  </div>
+  </body>
 
 </div>

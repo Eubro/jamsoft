@@ -3,6 +3,9 @@ import { Component, OnInit, Input,Output } from '@angular/core';
 import { ListService } from '../list.service';
 import { Empresa } from '../models/empresa';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+
 
 
 
@@ -20,9 +23,13 @@ empresa = {
 submitted = false;
 
 
-  constructor(private listService: ListService, private route: ActivatedRoute, private router:Router ) {}
+
+  constructor(private listService: ListService, private route: ActivatedRoute, private router:Router, private location: Location) {
+
+  }
 
   ngOnInit(): void {
+
 
     }
 
@@ -35,7 +42,13 @@ submitted = false;
     this.listService.create(data).subscribe(response =>{console.log(response);this.submitted =true;});
 
     }
+  load(){
+    location.reload()
+
   }
+
+  }
+
 
 
 

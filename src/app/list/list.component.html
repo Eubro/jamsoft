@@ -1,25 +1,67 @@
-<div class="container">
-  <div class="row">
-    <div class="search-hero">
-      <input type="text" name="search" [(ngModel)]="searchText" placeholder="Nome da empresa">
+
+<!-- Toolbar -->
+<div class="teste">
+  <body>
+    <form method="POST" id="pesquisa" name="pesquisa">
+      <table class="table bg-branco input-min" cellspacing="0" cellpadding="0">
+        <tbody>
+          <tr>
+            <td class="titulo" colspan="2">Avaliação</td>
+          </tr>
+          <tr>
+            <td class="topicos" colspan="2">
+              <b>Empresa: </b>
+              <form class="example-form">
+                <mat-form-field class="example-full-width" appearance="fill">
+                  <mat-label>Pesquisar</mat-label>
+                  <input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto">
+                  <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+                    <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                      {{option.nome}}
+                    </mat-option>
+                  </mat-autocomplete>
+                </mat-form-field>
+              </form>
+
+
+
+              <a routerLink="/add" >
+                <button>+</button>
+              </a>
+
+
+
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <h2>
+                <span>*</span>
+              </h2>
+              <textarea
+                name="obs"
+                id="obs"
+                cols="150"
+                rows="20"
+                placeholder="observações aqui"
+              ></textarea>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <input id="gravar" type="submit" value="Gravar" name="Gravar" />
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </form>
+    <div class="footer">
+      <p>
+
+      </p>
+      <p>
+
+      </p>
     </div>
-    <table class= "table table-striped">
-      <thead>
-        <tr>
-          <th>Id</th>
-          <th>Nome da empresa</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let empresa of empresas | filter:searchText">
-          <td>{{empresa.id}}</td>
-          <td>{{empresa.nome}}</td>
-        </tr>
-      </tbody>
-
-    </table>
-  </div>
+  </body>
 </div>
-
-
-
